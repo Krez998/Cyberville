@@ -19,6 +19,11 @@ public class CameraController : MonoBehaviour
     private float _rotationX;
     private float _rotationY;
 
+    public void SetTarget(Transform target)
+    {
+        _followTarget = target;
+    }
+
     public Quaternion PlanarRotation => Quaternion.Euler(0, _rotationY, 0);
 
     private void Start()

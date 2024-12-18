@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Driver : MonoBehaviour
+public class DriverAnimator : MonoBehaviour
 {
     private Animator _animator;
 

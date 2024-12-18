@@ -618,9 +618,10 @@ GameObject:
   - component: {fileID: 4148424787938288840}
   - component: {fileID: 8268155748186410746}
   - component: {fileID: 5690498441732444551}
-  m_Layer: 6
+  - component: {fileID: 8627048813311153886}
+  m_Layer: 0
   m_Name: PLAYER Cheap Car
-  m_TagString: Player
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,9 +695,9 @@ MonoBehaviour:
   _brakeTorque: 3000
   _speed: 180
   _numberOfGears: 6
-  _acceleration: {fileID: 0}
-  _deceleration: {fileID: 0}
-  _idle: {fileID: 0}
+  _acceleration: {fileID: 8300000, guid: 316224186e8ae6543990a05f4dc13981, type: 3}
+  _deceleration: {fileID: 8300000, guid: b049660b860c8334a852b54855bce599, type: 3}
+  _idle: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
 --- !u!114 &2418709390163559150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationAngle: 40
-  _allowMove: 0
+  _allowMove: 1
 --- !u!114 &4228690107560243439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,6 +799,27 @@ MonoBehaviour:
   _idleAudio: {fileID: 1277978022815283325}
   _minPitch: 1
   idlingPitch: 0.4
+--- !u!65 &8627048813311153886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485233505599164695}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1.3, z: 5.5}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &510096500983634865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392691835414936467}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wheel Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 386470781766857040}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Camera Target
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -1390,7 +1412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237857821480369357}
   - component: {fileID: 9033088124948475794}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FR Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,7 +1913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8465109638600460385}
   - component: {fileID: 8319960845603730252}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Deceleration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2965,7 +2987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926200273059947791}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wheel Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3147,7 +3169,7 @@ MonoBehaviour:
   _tyreBurnoutSmoke: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   _isGrounded: 0
   _skidAudioVolume: 0.2
 --- !u!1 &2983396646398987207
@@ -3590,7 +3612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7741772161611040960}
   - component: {fileID: 5455204586867227756}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RL Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4693,7 +4715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2668784377116499138}
   - component: {fileID: 6659600566865909843}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Acceleration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5682,7 +5704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7219216777107833501}
   - component: {fileID: 2000297676617887263}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FL Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6157,7 +6179,7 @@ MonoBehaviour:
   _tyreBurnoutSmoke: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   _isGrounded: 0
   _skidAudioVolume: 0.2
 --- !u!1 &5328968942326394565
@@ -6402,7 +6424,7 @@ MonoBehaviour:
   _tyreBurnoutSmoke: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   _isGrounded: 0
   _skidAudioVolume: 0.2
 --- !u!1 &5387470612725989596
@@ -7447,7 +7469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8719298887434473844}
   - component: {fileID: 7692360851794965884}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RR Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8409,7 +8431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2585160417899487506}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AudioSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10163,10 +10185,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2814501522719552406}
-  - component: {fileID: 7879657015862541337}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10260,27 +10281,6 @@ Transform:
   - {fileID: 5533003693909644946}
   m_Father: {fileID: 7610945134968841856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7879657015862541337
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9025532774419827952}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 1.3, z: 5.5}
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &9029215256823349219
 GameObject:
   m_ObjectHideFlags: 0
@@ -10721,7 +10721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6877325958208943924}
   - component: {fileID: 1277978022815283325}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10995,7 +10995,7 @@ MonoBehaviour:
   _tyreBurnoutSmoke: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   _isGrounded: 0
   _skidAudioVolume: 0.2
 --- !u!1 &9173832465946447630
