@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CarEngine))]
-public class CarInput : MonoBehaviour
+public class CarInput : MonoBehaviour, IInput
 {
     [SerializeField, Range(0, 40)] private float _rotationAngle;
     [SerializeField] private bool _allowMove = false;
@@ -19,7 +19,7 @@ public class CarInput : MonoBehaviour
 
     private void AllowMove() => _allowMove = true;
 
-    private void Update()
+    public void HandleInput()
     {
         if (_allowMove)
         {

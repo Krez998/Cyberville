@@ -1,7 +1,14 @@
 using UnityEngine;
 
+public enum CameraType
+{
+    Character,
+    Car
+}
+
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private CameraType _cameraType;
     [SerializeField] private Transform _followTarget;
     [SerializeField] private float _rotationSpeed = 2f;
     [SerializeField] private float _distance = 5;
@@ -19,9 +26,20 @@ public class CameraController : MonoBehaviour
     private float _rotationX;
     private float _rotationY;
 
-    public void SetTarget(Transform target)
+    public void SetTarget(Transform target, CameraType cameraType)
     {
         _followTarget = target;
+        _cameraType = cameraType;
+
+        switch (_cameraType)
+        {
+            case CameraType.Character:
+                _distance = 3f;
+                break;
+            case CameraType.Car:
+                _distance = 5f;
+                break;
+        }
     }
 
     public Quaternion PlanarRotation => Quaternion.Euler(0, _rotationY, 0);

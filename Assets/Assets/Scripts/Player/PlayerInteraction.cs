@@ -3,15 +3,16 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _playerMovement;
-    [SerializeField] private CarInput _carInput;
-    [SerializeField] private bool _isInCar; // ‘лаг, указывающий, находитс€ ли персонаж в автомобиле
+    [SerializeField] private bool _isInCar; // указывает, находитс€ ли персонаж в автомобиле
+    [SerializeField] private Collider _carCollider; // 
+
+    [SerializeField] private IInput _input;
 
     [SerializeField] private CameraController _cameraController;
 
     private void Awake()
     {
-        _playerMovement = GetComponent<PlayerMovement>();
+        _input = GetComponent<IInput>();
         _cameraController = FindFirstObjectByType<CameraController>();
     }
 
@@ -30,12 +31,13 @@ public class PlayerInteraction : MonoBehaviour
         //    characterController.enabled = true;
         //}
 
+        _input.HandleInput();
 
-        if ((Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Return)) && _carInput != null)
+        if ((Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Return)) && _carCollider != null)
         {
             if (!_isInCar)
             {
-                EnterCar(_carInput);
+                EnterCar();
             }
             else
             {
@@ -49,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         //Debug.Log($"нашлась машина! - {other.name}");
         if (other.CompareTag("Car"))
         {
-            _carInput = other.GetComponent<CarInput>(); // ѕолучаем ссылку на CarController
+            _carCollider = other; // ѕолучаем ссылку на автомобиль
         }
     }
 
@@ -58,25 +60,26 @@ public class PlayerInteraction : MonoBehaviour
         //Debug.Log($"отошел от машины - {other.name}");
         if (other.CompareTag("Car"))
         {
-            _carInput = null; // ќчищаем ссылку, когда персонаж покидает триггер
+            _carCollider = null; // ќчищаем ссылку на автомобиль, когда персонаж покидает триггер
         }
     }
 
-    private void EnterCar(CarInput car)
+    private void EnterCar()
     {
-        _isInCar = true;
-        _playerMovement.enabled = false;
-        _carInput.enabled = true;
-        _cameraController.SetTarget(_carInput.transform);
-        // анимаци€ передвижени€ и входа в авто
+        if(_carCollider.TryGetComponent(out IInput input))
+        {
+            _input = input;
+            _isInCar = true;
+            _cameraController.SetTarget(_carCollider.transform, CameraType.Car);
+            // анимаци€ передвижени€ и входа в авто
+        }
     }
 
     private void ExitCar()
     {
         _isInCar = false;
-        _playerMovement.enabled = true;
-        _carInput.enabled = false;
-        _cameraController.SetTarget(transform);
-        // анимаци€ передвижени€ и выхода из авто
+        _input = GetComponent<IInput>(); // получение компонента управлени€ персонажем
+        _cameraController.SetTarget(transform, CameraType.Character); /// добавить плавный переход камеры
+        /// анимаци€ передвижени€ и выхода из авто
     }
 }

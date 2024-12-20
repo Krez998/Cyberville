@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IInput
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed = 500f;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         _meeleFighter = GetComponent<MeeleFighter>();
     }
 
-    private void Update()
+    public void HandleInput()
     {
         // гарантирует что мы не сможем двигаться во время атаки
         if (_meeleFighter.InAction)
