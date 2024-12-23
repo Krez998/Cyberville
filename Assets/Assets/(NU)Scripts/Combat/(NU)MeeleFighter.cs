@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum AttackState { Idle, Windup, Impact, Cooldown }
 
-public class MeeleFighter : MonoBehaviour
+public class NU_MeeleFighter : MonoBehaviour
 {
     public bool InAction => _inAction;
 

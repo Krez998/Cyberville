@@ -47,7 +47,6 @@ public class GearBox : MonoBehaviour
     private Rigidbody _rigidbody;
     private CarEngine _engine;
     private WaitForSeconds _gearShiftDelay;
-    private bool _isPlayerCar;
 
     private void Awake()
     {
@@ -64,9 +63,8 @@ public class GearBox : MonoBehaviour
         ChangeGears();
     }
 
-    public void GetData(bool isPlayerCar, float speed, int numberOfGears)
+    public void SetData(float speed, int numberOfGears)
     {
-        _isPlayerCar = isPlayerCar;
         _maxGear = numberOfGears;
         _speedValues = new float[_maxGear];
         float speedDelta = speed / _maxGear;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IInput
+public class NU_PlayerMovement : MonoBehaviour, IInput
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed = 500f;
@@ -14,14 +14,14 @@ public class PlayerMovement : MonoBehaviour, IInput
     private CameraController _cameraController;
     private Animator _animator;
     private CharacterController _characterController;
-    private MeeleFighter _meeleFighter;
+    private NU_MeeleFighter _meeleFighter;
 
     private void Awake()
     {
         _cameraController = Camera.main.GetComponent<CameraController>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
-        _meeleFighter = GetComponent<MeeleFighter>();
+        _meeleFighter = GetComponent<NU_MeeleFighter>();
     }
 
     public void HandleInput()

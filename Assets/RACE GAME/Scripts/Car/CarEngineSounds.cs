@@ -18,7 +18,7 @@ public class CarEngineSounds : MonoBehaviour
 
     public float idlingPitch;
 
-    public void GetData(AudioClip acceleration, AudioClip deceleration, AudioClip idle)
+    public void SetData(AudioClip acceleration, AudioClip deceleration, AudioClip idle)
     {
         _accelerationAudio.clip = acceleration;
         _decelerationAudio.clip = deceleration;

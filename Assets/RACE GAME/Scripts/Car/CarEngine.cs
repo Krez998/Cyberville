@@ -32,7 +32,7 @@ public class CarEngine : MonoBehaviour, IMovable
 
     public float _gasInput;
 
-    public void GetData(float motorTorque, float brakeTorque, WheelDriveMode wheelDriveMode)
+    public void SetData(float motorTorque, float brakeTorque, WheelDriveMode wheelDriveMode)
     {
         _torqueForce = motorTorque;
         _brakeForce = brakeTorque;

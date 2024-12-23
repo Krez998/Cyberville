@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CombatController : MonoBehaviour
 {
-    private MeeleFighter _meeleFighter;
+    private NU_MeeleFighter _meeleFighter;
 
     private void Awake()
     {
-        _meeleFighter = GetComponent<MeeleFighter>();
+        _meeleFighter = GetComponent<NU_MeeleFighter>();
     }
 
     private void Update()

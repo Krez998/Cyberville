@@ -1,30 +1,30 @@
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CarEngine))]
 [RequireComponent(typeof(GearBox))]
-public class Car : MonoBehaviour
+public class Car : MonoBehaviour, IVehicleInfoProvider
 {
     public Transform CameraTarget => _cameraTarget;
+    public Transform VehicleEntryPosition => _vehicleEntryPosition;
 
-    [SerializeField] private bool _isPlayerCar;
+    public IInput input => throw new System.NotImplementedException();
+
     [SerializeField] private Transform _cameraTarget;
-
-    public int TargetRaiting => _targetRaiting;
-    public Sprite Image => _image;
-
-    [SerializeField] private int _targetRaiting;
-    [SerializeField] private Sprite _image;
+    [SerializeField] private Transform _vehicleEntryPosition;
     [SerializeField] private float _mass;
-    [Header("Car Engine")]
+
+    [Header("Engine Settings")]
     [SerializeField] private WheelDriveMode _wheelDriveMode;
     [SerializeField] private float _motorTorque;
     [SerializeField] private float _brakeTorque;
-    [Header("Gearbox")]
+
+    [Header("Gearbox Settings")]
     [SerializeField] private float _speed;
     [SerializeField] private int _numberOfGears;
 
-    [Header("Audio")]
+    [Header("Audio Data")]
     [SerializeField] private AudioClip _acceleration;
     [SerializeField] private AudioClip _deceleration;
     [SerializeField] private AudioClip _idle;
@@ -43,8 +43,8 @@ public class Car : MonoBehaviour
 
         _rigidbody.mass = _mass;
 
-        _carEngine.GetData(_motorTorque, _brakeTorque, _wheelDriveMode);
-        _gearBox.GetData(_isPlayerCar, _speed, _numberOfGears);
-        _engineSounds.GetData(_acceleration, _deceleration, _idle);
+        _carEngine.SetData(_motorTorque, _brakeTorque, _wheelDriveMode);
+        _gearBox.SetData(_speed, _numberOfGears);
+        _engineSounds.SetData(_acceleration, _deceleration, _idle);
     }
 }

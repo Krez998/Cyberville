@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.XInput;
 
 [RequireComponent(typeof(CarEngine))]
 public class CarInput : MonoBehaviour, IInput

@@ -1,14 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement))]
-public class PlayerInteraction : MonoBehaviour
+[RequireComponent(typeof(NU_PlayerMovement))]
+public class NU_PlayerInteraction : MonoBehaviour
 {
+    [Header("Player Data")]
+    [SerializeField] private CameraController _cameraController;
+
+    [Header("Car Data")]
+    [SerializeField] private Transform _vehicleEntryPosition;
     [SerializeField] private bool _isInCar; // указывает, находитс€ ли персонаж в автомобиле
     [SerializeField] private Collider _carCollider; // 
-
     [SerializeField] private IInput _input;
-
-    [SerializeField] private CameraController _cameraController;
 
     private void Awake()
     {
@@ -49,9 +51,10 @@ public class PlayerInteraction : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log($"нашлась машина! - {other.name}");
-        if (other.CompareTag("Car"))
+        if (other.CompareTag("Car") && other.TryGetComponent(out IVehicleInfoProvider vehicle))
         {
-            _carCollider = other; // ѕолучаем ссылку на автомобиль
+            //_carCollider = other; // ѕолучаем ссылку на автомобиль
+            _vehicleEntryPosition = vehicle.VehicleEntryPosition;
         }
     }
 
@@ -60,7 +63,8 @@ public class PlayerInteraction : MonoBehaviour
         //Debug.Log($"отошел от машины - {other.name}");
         if (other.CompareTag("Car"))
         {
-            _carCollider = null; // ќчищаем ссылку на автомобиль, когда персонаж покидает триггер
+            //_carCollider = null; // ќчищаем ссылку на автомобиль, когда персонаж покидает триггер
+            _vehicleEntryPosition = null;
         }
     }
 
