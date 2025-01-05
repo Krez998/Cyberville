@@ -60,7 +60,8 @@ public class NU_PlayerMovement : MonoBehaviour, IInput
                 _rotationSpeed * Time.deltaTime);
         }
 
-        _animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);     
+        _animator.SetFloat("moveAmount", moveAmount, 0.2f, Time.deltaTime);
+        
     }
 
     private void CheckGround()

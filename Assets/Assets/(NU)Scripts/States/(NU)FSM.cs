@@ -53,7 +53,7 @@ public class InputController : MonoBehaviour
     void Start()
     {
         Player = FindFirstObjectByType<PlayerController>();
-        currentState = new PlayerOnFootState(Player); // Начальное состояние
+        //currentState = new PlayerOnFootState(Player); // Начальное состояние
     }
 
     public void HandleInput()
@@ -67,57 +67,57 @@ public class InputController : MonoBehaviour
     }
 }
 
-public class PlayerOnFootState : IPlayerState
-{
-    private IPlayerInteraction player;
+//public class PlayerOnFootState : IPlayerState
+//{
+//    private IPlayerInteraction player;
 
-    public PlayerOnFootState(IPlayerInteraction player)
-    {
-        this.player = player;
-    }
+//    public PlayerOnFootState(IPlayerInteraction player)
+//    {
+//        this.player = player;
+//    }
 
-    public void HandleInput(InputController inputController)
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            player.Move(Vector3.forward);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            player.Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            player.EnterVehicle();
-            //inputController.ChangeState(new PlayerInVehicleState(player));
-        }
-    }
-}
+//    public void HandleInput(InputController inputController)
+//    {
+//        if (Input.GetKey(KeyCode.W))
+//        {
+//            player.Move(Vector3.forward);
+//        }
+//        if (Input.GetKeyDown(KeyCode.Space))
+//        {
+//            player.Jump();
+//        }
+//        if (Input.GetKeyDown(KeyCode.E))
+//        {
+//            player.EnterVehicle();
+//            //inputController.ChangeState(new PlayerInVehicleState(player));
+//        }
+//    }
+//}
 
-public class PlayerInVehicleState : IPlayerState
-{
-    private IVehicleInteraction vehicle;
+//public class PlayerInVehicleState : IPlayerState
+//{
+//    private IVehicleInteraction vehicle;
 
-    public PlayerInVehicleState(IVehicleInteraction vehicle)
-    {
-        this.vehicle = vehicle;
-    }
+//    public PlayerInVehicleState(IVehicleInteraction vehicle)
+//    {
+//        this.vehicle = vehicle;
+//    }
 
-    public void HandleInput(InputController inputController)
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            vehicle.StartEngine();
-            // Здесь можно вызвать анимацию вождения
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            vehicle.OpenDoor();
-        }
-        if (Input.GetKeyDown(KeyCode.X)) // Пример выхода из автомобиля
-        {
-            inputController.ChangeState(new PlayerOnFootState(inputController.Player));
-            inputController.Player.ExitVehicle();
-        }
-    }
-}
+//    public void HandleInput(InputController inputController)
+//    {
+//        if (Input.GetKey(KeyCode.W))
+//        {
+//            vehicle.StartEngine();
+//            // Здесь можно вызвать анимацию вождения
+//        }
+//        if (Input.GetKeyDown(KeyCode.E))
+//        {
+//            vehicle.OpenDoor();
+//        }
+//        if (Input.GetKeyDown(KeyCode.X)) // Пример выхода из автомобиля
+//        {
+//            inputController.ChangeState(new PlayerOnFootState(inputController.Player));
+//            inputController.Player.ExitVehicle();
+//        }
+//    }
+//}

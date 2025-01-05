@@ -79,7 +79,7 @@ public class CarEngine : MonoBehaviour, IMovable
         if (_motorTorque != 0 && _gasInput < 1f)
             _gasInput += 0.01f;
         else if (_motorTorque == 0 && _gasInput > 0f)
-            _gasInput -= 0.005f;
+            _gasInput -= 0.001f;
     }
 
     private void FixedUpdate()
@@ -87,7 +87,7 @@ public class CarEngine : MonoBehaviour, IMovable
         CheckGasInput();
     }
 
-    public void Acceleration()
+    public void GoForward()
     {
         if (_gearBox.Speed != 0 && !_gearBox.IsMovingInForwardDirection)
             Brake();

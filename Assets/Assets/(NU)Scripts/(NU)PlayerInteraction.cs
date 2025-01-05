@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(NU_PlayerMovement))]
 public class NU_PlayerInteraction : MonoBehaviour
 {
-    [Header("Player Data")]
     [SerializeField] private CameraController _cameraController;
 
     [Header("Car Data")]
@@ -33,7 +32,7 @@ public class NU_PlayerInteraction : MonoBehaviour
         //    characterController.enabled = true;
         //}
 
-        _input.HandleInput();
+        //_input.HandleInput();
 
         if ((Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Return)) && _carCollider != null)
         {
@@ -74,7 +73,7 @@ public class NU_PlayerInteraction : MonoBehaviour
         {
             _input = input;
             _isInCar = true;
-            _cameraController.SetTarget(_carCollider.transform, CameraType.Car);
+            _cameraController.SetTarget(transform, _carCollider.transform, CameraType.Car);
             // анимация передвижения и входа в авто
         }
     }
@@ -83,7 +82,7 @@ public class NU_PlayerInteraction : MonoBehaviour
     {
         _isInCar = false;
         _input = GetComponent<IInput>(); // получение компонента управления персонажем
-        _cameraController.SetTarget(transform, CameraType.Character); /// добавить плавный переход камеры
+        _cameraController.SetTarget(_carCollider.transform, transform, CameraType.Character); /// добавить плавный переход камеры
         /// анимация передвижения и выхода из авто
     }
 }
