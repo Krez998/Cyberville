@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(NU_PlayerMovement))]
 public class NU_PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private CameraController _cameraController;

@@ -13,6 +13,11 @@ public class SitCarState : PlayerOnFootState
         _monoBehaviour = monoBehaviour;
     }
 
+    public override void Enter()
+    {
+        Config.Animator.SetBool("isAiming", false);
+    }
+
     public override void HandleInput()
     {
         if (!_inAction)
@@ -24,6 +29,7 @@ public class SitCarState : PlayerOnFootState
 
     public override void LogicUpdate()
     {
+
         // ¬ычисл€ем рассто€ние до места посадки по ос€м X, Y и Z
         float distX = Mathf.Abs(Config.PlayerTransform.position.x - Config.VehicleEntryPosition.position.x);
         float distZ = Mathf.Abs(Config.PlayerTransform.position.z - Config.VehicleEntryPosition.position.z);

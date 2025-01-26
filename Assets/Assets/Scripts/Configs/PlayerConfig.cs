@@ -14,10 +14,16 @@ public class PlayerConfig
     public float RotationSpeed;
     public bool IsGrounded;
     public float YSpeed;
+    [Tooltip("Радиус сферы должен быть равен радиусу коллайдера контроллера персонажа," +
+        " иначе скорость падения с выступа будет расти и персонаж упадет мгновенно")]
     public float GroundCheckRadius;
     public Vector3 GroundCheckOffset;
     public LayerMask GroundLayer;
     public List<AttackData> Attacks;
+
+    //public float MoveAmount;
+    //public float InterpolatedVerticalInput;
+    //public float InterpolatedHorizontalInput;
 
     [Header("Car Data")]
     public IVehicleDoorControl DoorControl;

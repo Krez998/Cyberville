@@ -18,6 +18,8 @@ public class MoveState : PlayerOnFootState
     {
         base.LogicUpdate();
 
+        Config.Animator.SetFloat("moveAmount", MoveAmount, 0.3f, Time.deltaTime);
+
         MoveAmount = Mathf.Clamp01(Mathf.Abs(HorizontalInput) + Mathf.Abs(VerticalInput));
         _moveInput = new Vector3(HorizontalInput, 0, VerticalInput).normalized;
         Velocity = Config.PlayerTransform.forward * Config.MoveSpeed * Config.Animator.GetFloat("moveAmount");
@@ -28,10 +30,28 @@ public class MoveState : PlayerOnFootState
         }
     }
 
+    //public override void LogicUpdate()
+    //{
+    //    base.LogicUpdate();
+
+    //    Config.Animator.SetFloat("vinput", Config.InterpolatedVerticalInput);
+    //    Config.Animator.SetFloat("hzinput", Config.InterpolatedHorizontalInput);
+
+    //    Config.MoveAmount = Mathf.Clamp01(Mathf.Abs(Config.InterpolatedHorizontalInput) + Mathf.Abs(Config.InterpolatedVerticalInput));
+    //    _moveInput = new Vector3(Config.InterpolatedHorizontalInput, 0, Config.InterpolatedVerticalInput).normalized;
+    //    Velocity = Config.PlayerTransform.forward * Config.MoveSpeed * Config.MoveAmount;
+
+    //    if (Config.MoveAmount <= 0f)
+    //    {
+    //        StateMachine.ChangeState<IdleState>();
+    //    }
+    //}
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
 
+        //if (Config.MoveAmount > 0.005f)
         if (MoveAmount > 0)
         {
             var targetRotation = Quaternion.LookRotation(Config.CameraController.PlanarRotation * _moveInput);

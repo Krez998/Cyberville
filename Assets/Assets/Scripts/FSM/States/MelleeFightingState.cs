@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttackState { Idle, Windup, Impact, Cooldown }
@@ -26,7 +25,6 @@ public class MelleeFightingState : PlayerOnFootState
 
     public override void Enter()
     {
-        Debug.Log(_inAction);
         TryToAttack();
     }
 
@@ -36,6 +34,11 @@ public class MelleeFightingState : PlayerOnFootState
         {
             TryToAttack();
         }
+    }
+
+    public override void LogicUpdate()
+    {
+        Config.Animator.SetFloat("moveAmount", MoveAmount, 0.3f, Time.deltaTime);
     }
 
     public override void PhysicsUpdate()

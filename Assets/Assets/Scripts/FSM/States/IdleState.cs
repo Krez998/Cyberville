@@ -9,6 +9,11 @@ public class IdleState : PlayerOnFootState
 
     public override void Enter()
     {
+        Debug.Log(nameof(IdleState));
+
+        Config.Animator.SetBool("isAiming", false);
+        Config.Animator.SetBool("Walking", false);
+
         base.Enter();
     }
 
@@ -22,9 +27,25 @@ public class IdleState : PlayerOnFootState
         base.LogicUpdate();
 
         MoveAmount = Mathf.Clamp01(Mathf.Abs(HorizontalInput) + Mathf.Abs(VerticalInput));
+        Config.Animator.SetFloat("moveAmount", MoveAmount, 0.3f, Time.deltaTime);
+        
         if (MoveAmount > 0)
             StateMachine.ChangeState<MoveState>();
     }
+
+    //public override void LogicUpdate()
+    //{
+    //    base.LogicUpdate();
+
+    //    //Config.Animator.SetFloat("moveAmount", MoveAmount, 0.3f, Time.deltaTime); ***
+    //    Config.Animator.SetFloat("vinput", Config.InterpolatedVerticalInput);
+    //    Config.Animator.SetFloat("hzinput", Config.InterpolatedHorizontalInput);
+
+
+    //    Config.MoveAmount = Mathf.Clamp01(Mathf.Abs(Config.InterpolatedHorizontalInput) + Mathf.Abs(Config.InterpolatedVerticalInput));
+    //    if (Config.MoveAmount > 0f)
+    //        StateMachine.ChangeState<MoveState>();
+    //}
 
     public override void PhysicsUpdate()
     {

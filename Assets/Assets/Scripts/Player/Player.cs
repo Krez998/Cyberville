@@ -3,11 +3,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerConfig _playerOnFootConfig;
-    [SerializeField] private CurrentState _currentState;
-
-    private CameraController _cameraController;  
+    private CameraController _cameraController;
     private StateMachine _stateMachine;
 
+
+    [Header("Temp Settings")]
+    [SerializeField] private bool _isShowStateInfo;
+    [SerializeField] private string _currentState;
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        Gizmos.DrawSphere(
+            _playerOnFootConfig.PlayerTransform.TransformPoint(_playerOnFootConfig.GroundCheckOffset),
+            _playerOnFootConfig.GroundCheckRadius);
+    }
 
     private void Awake()
     {
@@ -25,41 +36,30 @@ public class Player : MonoBehaviour
         _stateMachine.AddState(new SitCarState(_stateMachine, _playerOnFootConfig, this));
         _stateMachine.AddState(new GetOutCarState(_stateMachine, _playerOnFootConfig, this));
         _stateMachine.AddState(new DrivingState(_stateMachine, _playerOnFootConfig));
+        ////////////////////////////////////////////
+        _stateMachine.AddState(new Aim_IdleState(_stateMachine, _playerOnFootConfig));
+        _stateMachine.AddState(new Aim_WalkState(_stateMachine, _playerOnFootConfig));
+        _stateMachine.AddState(new Aim_RunState(_stateMachine, _playerOnFootConfig));
+        _stateMachine.AddState(new Aim_CrouchState(_stateMachine, _playerOnFootConfig));
+
         _stateMachine.ChangeState<IdleState>();
+        //_stateMachine.ChangeState<Aim_IdleState>();
     }
 
     private void Update()
     {
         _stateMachine.CurrentState.HandleInput();
         _stateMachine.CurrentState.LogicUpdate();
+
+
+        ///////////////////////////////////
+        if (_isShowStateInfo)
+            _currentState = _stateMachine.CurrentState.GetType().ToString();
     }
 
     private void FixedUpdate()
     {
-        _stateMachine.CurrentState.PhysicsUpdate();
-
-
-        switch (_stateMachine.CurrentState)
-        {
-            case IdleState:
-                _currentState = CurrentState.IdleState;
-                break;
-            case MoveState:
-                _currentState = CurrentState.MoveState; 
-                break;
-            case MelleeFightingState:
-                _currentState = CurrentState.FightingState;
-                break;
-            case SitCarState:
-                _currentState = CurrentState.SitCarState;
-                break;
-            case GetOutCarState:
-                _currentState = CurrentState.GetOutCarState;
-                break;
-            case DrivingState:
-                _currentState = CurrentState.DrivingState;
-                break;
-        }
+        _stateMachine.CurrentState.PhysicsUpdate();     
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,15 +71,4 @@ public class Player : MonoBehaviour
     {
         _stateMachine.CurrentState?.OnTriggerExit(other);
     }
-}
-
-public enum CurrentState
-{
-    Default,
-    IdleState,
-    MoveState,
-    FightingState,
-    SitCarState,
-    GetOutCarState,
-    DrivingState
 }

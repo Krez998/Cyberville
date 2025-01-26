@@ -7,8 +7,17 @@ public enum CameraType
     Car
 }
 
+public enum CameraMode
+{
+    ThirdPerson, // Свободная камера от третьего лица
+    SpineCamera, // Камера за спиной игрока
+    Aiming // Режим прицеливания
+}
+
 public class CameraController : MonoBehaviour
 {
+    public CameraMode currentCameraMode = CameraMode.ThirdPerson; // Текущий режим камеры
+
     [SerializeField] private CameraType _cameraType;
     [SerializeField] private Transform _followTarget;
     [SerializeField] private float _rotationSpeed = 2f;
@@ -108,6 +117,27 @@ public class CameraController : MonoBehaviour
     }
 
     private void LateUpdate()
+    {
+        switch (currentCameraMode)
+        {
+            case CameraMode.ThirdPerson:
+                ThirdPersonCamera();
+                break;
+            case CameraMode.SpineCamera:
+                SpineCamera();
+
+                break;
+        }
+    }
+
+    private void SpineCamera()
+    {
+        Vector3 targetPosition = _followTarget.TransformPoint(new Vector3(0, _framingOffset.y * 3f, -_distance * 2f));
+        transform.position = targetPosition;
+        transform.LookAt(_followTarget.position + new Vector3(0, 1.5f, 0));
+    }
+
+    private void ThirdPersonCamera()
     {
         _invertXVal = _invertX ? -1 : 1;
         _invertYVal = _invertY ? -1 : 1;
